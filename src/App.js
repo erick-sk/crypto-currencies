@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import imagen from './cryptomonedas.png';
+import Form from './components/Form';
 
 const Container = styled.div`
   max-width: 900px;
@@ -42,6 +43,7 @@ function App() {
       </div>
       <div>
         <Heading>Instant Results</Heading>
+        <Form></Form>
       </div>
     </Container>
   );
