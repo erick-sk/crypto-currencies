@@ -1,4 +1,26 @@
 import React, { Fragment, useState } from 'react';
+import styled from '@emotion/styled';
+
+const Label = styled.label`
+  font-family: 'Bebas Neue', cursive;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.4rem;
+  margin-top: 2rem;
+  display: block;
+`;
+
+const Selected = styled.select`
+  width: 100%;
+  display: block;
+  padding: 0.8rem;
+  -webkit-appearance: none;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  margin-top: 1rem;
+`;
 
 const useCurrency = (label, stateInitial, options) => {
   // State custom hook
@@ -6,15 +28,15 @@ const useCurrency = (label, stateInitial, options) => {
 
   const Select = () => (
     <Fragment>
-      <label>{label}</label>
-      <select onChange={(e) => updateState(e.target.value)} value={state}>
+      <Label>{label}</Label>
+      <Selected onChange={(e) => updateState(e.target.value)} value={state}>
         <option value=''>-- Select --</option>
         {options.map((option) => (
           <option key={option.code} value={option.code}>
             {option.name}
           </option>
         ))}
-      </select>
+      </Selected>
     </Fragment>
   );
 
