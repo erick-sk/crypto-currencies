@@ -26,6 +26,7 @@ const Button = styled.input`
 const Form = () => {
   // State list cryptocurrency
   const [listCrypto, saveCryptocurrencies] = useState([]);
+  const [error, saveError] = useState(false);
 
   const CURRENCIES = [
     { code: 'USD', name: 'United States Dollar' },
@@ -59,8 +60,24 @@ const Form = () => {
     consultAPI();
   }, []);
 
+  // When user click submit
+  const quoteCurrency = (e) => {
+    e.preventDefault();
+
+    // Validation both label exist
+    if (currency === '' || cryptocurrency === '') {
+      saveError(true);
+      return;
+    }
+
+    // pass data to main component
+    saveError(false);
+  };
+
   return (
-    <form>
+    <form onSubmit={quoteCurrency}>
+      {error ? 'Theres is a mistake' : null}
+
       <SelectCurrencies />
 
       <SelectCrypto />
