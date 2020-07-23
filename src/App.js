@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+
 import imagen from './cryptomonedas.png';
 import Form from './components/Form';
 
@@ -24,6 +25,7 @@ const Heading = styled.h1`
   text-align: left;
   font-weight: 700;
   font-size: 50px;
+  margin-bottom: 50px;
   margin-top: 80px;
 
   &::after {
