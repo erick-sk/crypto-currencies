@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import axios from 'axios';
 import imagen from './cryptomonedas.png';
 import Form from './components/Form';
+import Quote from './components/Quote';
 
 const Container = styled.div`
   max-width: 900px;
@@ -40,6 +41,7 @@ const Heading = styled.h1`
 function App() {
   const [currency, saveCurrency] = useState('');
   const [cryptocurrency, saveCryptocurrency] = useState('');
+  const [result, saveResult] = useState({});
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -51,7 +53,7 @@ function App() {
 
       const result = await axios.get(url);
 
-      console.log(result.data.DISPLAY[cryptocurrency][currency]);
+      saveResult(result.data.DISPLAY[cryptocurrency][currency]);
     };
     quoteCryptocurrency();
   }, [currency, cryptocurrency]);
@@ -67,6 +69,8 @@ function App() {
           saveCurrency={saveCurrency}
           saveCryptocurrency={saveCryptocurrency}
         />
+
+        <Quote result={result} />
       </div>
     </Container>
   );
