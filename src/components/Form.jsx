@@ -34,6 +34,7 @@ const Form = ({ saveCurrency, saveCryptocurrency }) => {
     { code: 'MXN', name: 'Mexican Peso' },
     { code: 'EUR', name: 'Euro' },
     { code: 'GBP', name: 'Pound Sterling' },
+    { code: 'PEN', name: 'Peruvian Sol' },
   ];
 
   // Use userCurrency
