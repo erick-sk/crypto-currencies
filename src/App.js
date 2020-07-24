@@ -4,6 +4,7 @@ import axios from 'axios';
 import imagen from './cryptomonedas.png';
 import Form from './components/Form';
 import Quote from './components/Quote';
+import Spinner from './components/Spinner';
 
 const Container = styled.div`
   max-width: 900px;
@@ -42,6 +43,7 @@ function App() {
   const [currency, saveCurrency] = useState('');
   const [cryptocurrency, saveCryptocurrency] = useState('');
   const [result, saveResult] = useState({});
+  const [loading, saveLoading] = useState(false);
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -53,10 +55,22 @@ function App() {
 
       const result = await axios.get(url);
 
-      saveResult(result.data.DISPLAY[cryptocurrency][currency]);
+      // show spinner
+      saveLoading(true);
+
+      // hide spinner and show result
+      setTimeout(() => {
+        //change state loading
+        saveLoading(false);
+        //save quote
+        saveResult(result.data.DISPLAY[cryptocurrency][currency]);
+      }, 1500);
     };
     quoteCryptocurrency();
   }, [currency, cryptocurrency]);
+
+  // Show Spinner or Result
+  const component = loading ? <Spinner /> : <Quote result={result} />;
 
   return (
     <Container>
@@ -69,8 +83,7 @@ function App() {
           saveCurrency={saveCurrency}
           saveCryptocurrency={saveCryptocurrency}
         />
-
-        <Quote result={result} />
+        {component}
       </div>
     </Container>
   );
